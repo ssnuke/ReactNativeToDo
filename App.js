@@ -16,17 +16,16 @@ export default function App () {
   const Stack = createStackNavigator ();
   return (
     <Provider store={store}>
-
       <NavigationContainer style={styles.container}>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="DayPlanner" component={DayPlanner} />
-          <Stack.Screen name="ImportantTask" component={ImportantTask} />
-          <Stack.Screen name="Calendar" component={Calendar} />
+        <Stack.Navigator  headerMode='none'>
+          <Stack.Screen name="Home"  component={Home} options={{ title:'' }}/>
+          <Stack.Screen name="DayPlanner" component={DayPlanner} options={{ title:'Plan your Day!' }}/>
+          <Stack.Screen name="ImportantTask" component={ImportantTask} options={{ title:'Important Tasks' }} />
+          <Stack.Screen name="Calendar" component={Calendar} options={{ title:'Calendar' }} />
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
-   
+      <StatusBar style="light" />
     </Provider>
   );
 }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View,Text,FlatList,TouchableOpacity,TouchableWithoutFeedback,Keyboard} from 'react-native';
-import {Card, TextInput, Button, Paragraph} from 'react-native-paper';
+import {Card, TextInput, Button} from 'react-native-paper';
 import {MaterialIcons} from '@expo/vector-icons';
 import styles from './styles';
 

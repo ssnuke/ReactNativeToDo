@@ -6,6 +6,7 @@ const styles = StyleSheet.create ({
     flex: 1,
     paddingTop: 5,
     backgroundColor: 'black',
+    paddingTop:Constants.statusBarHeight,
   },
   paragraph: {
     marginLeft: 20,

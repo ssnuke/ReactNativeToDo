@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {View,Text,FlatList,TouchableOpacity,TouchableWithoutFeedback,Keyboard, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+} from 'react-native';
 import {Card, TextInput, Button, Paragraph} from 'react-native-paper';
 import {MaterialIcons} from '@expo/vector-icons';
 import styles from './styles';
@@ -8,17 +16,15 @@ import DatePicker from '../DatePicker';
 import {connect} from 'react-redux';
 import {addTodo, deleteTodo} from '../../redux/actions';
 
-
 //Important Tasks!!!!!
 const DayPlanner = ({todo_list, addTodo, deleteTodo}) => {
   const [task, setTask] = useState ('');
   const [date, setDate] = useState ('');
 
-
   const handleAddTodo = () => {
-    if(task.length <1 ){
-      Alert.alert("Please input task");
-    }else{
+    if (task.length < 1) {
+      Alert.alert ('Please input task');
+    } else {
       addTodo (task, date);
       setTask ('');
       setDate ('');
@@ -36,8 +42,8 @@ const DayPlanner = ({todo_list, addTodo, deleteTodo}) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-      <View style={styles.paragraph}>
-          <Text style={styles.paragraphText}>Important Tasks To Complete</Text>
+        <View style={styles.paragraph}>
+          <Text style={styles.paragraphText}>Important Tasks</Text>
         </View>
 
         <View style={styles.inputContainer}>

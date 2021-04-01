@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text} from 'react-native';
 import {Agenda} from 'react-native-calendars';
-import {Avatar, Card} from 'react-native-paper';
+import {Card} from 'react-native-paper';
 import {connect} from 'react-redux';
 import styles from './styles';
 
@@ -24,15 +24,51 @@ const Calendar = ({todo_list}) => {
 
   const renderItem = item => {
     return (
-      <TouchableOpacity style={styles.itemContainer}>
-        <Text>{item.task}</Text>
-      </TouchableOpacity>
+      <Card style={styles.itemContainer}>
+        <Card.Content style={styles.itemContent}>
+          <Text style={styles.itemText}>{item.task}</Text>
+        </Card.Content>
+      </Card>
     );
   };
 
   return (
     <View style={styles.container}>
-      <Agenda items={items} selected={'2021-04-01'} renderItem={renderItem} />
+      <View style={styles.paragraph}>
+        <Text style={styles.paragraphText}>Your Tasks List</Text>
+      </View>
+
+      <Agenda
+        items={items}
+        selected={'2021-04-01'}
+        renderItem={renderItem}
+        theme={{
+          backgroundColor: '#ffffff',
+          calendarBackground: 'black',
+          textSectionTitleColor: 'white',
+          textSectionTitleDisabledColor: '#d9e1e8',
+          selectedDayBackgroundColor: 'grey',
+          selectedDayTextColor: 'black',
+          todayTextColor: 'yellow',
+          dayTextColor: 'white',
+          textDisabledColor: 'grey',
+          dotColor: '#00adf5',
+          selectedDotColor: '#ffffff',
+          arrowColor: 'violet',
+          disabledArrowColor: '#d9e1e8',
+          monthTextColor: 'white',
+          indicatorColor: 'yellow',
+          textDayFontFamily: 'monospace',
+          textMonthFontFamily: 'monospace',
+          textDayHeaderFontFamily: 'monospace',
+          textDayFontWeight: '300',
+          textMonthFontWeight: 'bold',
+          textDayHeaderFontWeight: '300',
+          textDayFontSize: 16,
+          textMonthFontSize: 16,
+          textDayHeaderFontSize: 16,
+        }}
+      />
     </View>
   );
 };

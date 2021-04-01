@@ -3,7 +3,7 @@ import {Keyboard, View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
 import DatePicker from 'react-native-modern-datepicker';
 import {Calendar} from 'react-native-calendars';
-import styles from '../DayPlanner/styles';
+import styles from './styles';
 
 const Date = props => {
   const {callback, setVisi} = props;
@@ -22,28 +22,9 @@ const Date = props => {
   return (
     <View>
 
-      {/* {visible
-        ? <DatePicker
-            options={{
-              backgroundColor: '#090C08',
-              textHeaderColor: '#FFA25B',
-              textDefaultColor: '#F6E7C1',
-              selectedTextColor: '#fff',
-              mainColor: '#F4722B',
-              textSecondaryColor: '#D6C7A1',
-              borderColor: 'rgba(122, 146, 165, 0.1)',
-            }}
-            current="2020-07-13"
-            selected="2020-07-23"
-            mode="calendar"
-            minuteInterval={30}
-            style={{borderRadius: 10}}
-            onDateChange={date => callback (date)}
-          />
-        : null} */}
-
       {visible
         ? <Calendar
+            style={styles.calendarContainer} 
             minDate={'2020-04-10'}
             maxDate={'2025-01-31'}
             onDayPress={day => {
@@ -55,12 +36,6 @@ const Date = props => {
             onPressArrowLeft={subtractMonth => subtractMonth ()}
             onPressArrowRight={addMonth => addMonth ()}
             enableSwipeMonths={true}
-            style={{
-              borderWidth: 1,
-              borderColor: 'gray',
-              height: 350,
-              padding: 5,
-            }}
             theme={{
               backgroundColor: '#ffffff',
               calendarBackground: 'black',

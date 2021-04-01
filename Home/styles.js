@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
     homeContainer:{
         flex: 1,
         width: '100%',
         backgroundColor: 'black',
+        paddingTop:Constants.statusBarHeight,
     },
     viewContainer: {
         backgroundColor:'#2d2e30',
