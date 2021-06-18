@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,44 +7,44 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-} from 'react-native';
-import {Card, TextInput, Button, Paragraph} from 'react-native-paper';
-import {MaterialIcons} from '@expo/vector-icons';
-import styles from './styles';
-import DatePicker from '../DatePicker';
+} from "react-native";
+import { Card, TextInput, Button, Paragraph } from "react-native-paper";
+import { MaterialIcons } from "@expo/vector-icons";
+import styles from "./styles";
+import DatePicker from "../DatePicker";
 
-import {connect} from 'react-redux';
-import {addTodo, deleteTodo} from '../../redux/actions';
+import { connect } from "react-redux";
+import { addTodo, deleteTodo } from "../../redux/actions";
 
 //Important Tasks!!!!!
-const DayPlanner = ({todo_list, addTodo, deleteTodo}) => {
-  const [task, setTask] = useState ('');
-  const [date, setDate] = useState ('');
-  const [modalVisible, setModalVisible] = useState (false);
+const DayPlanner = ({ todo_list, addTodo, deleteTodo }) => {
+  const [task, setTask] = useState("");
+  const [date, setDate] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleAddTodo = () => {
     if (task.length < 1) {
-      Alert.alert ('Please input task');
+      Alert.alert("Please input task");
     } else {
-      addTodo (task, date);
-      setTask ('');
-      setDate ('');
+      addTodo(task, date);
+      setTask("");
+      setDate("");
       Keyboard.dismiss();
     }
   };
 
-  const handleDeleteTodo = id => {
-    deleteTodo (id);
+  const handleDeleteTodo = (id) => {
+    deleteTodo(id);
   };
 
-  const getDate = inputdate => {
-    setDate (inputdate);
-    setModalVisible (false);
+  const getDate = (inputdate) => {
+    setDate(inputdate);
+    setModalVisible(false);
   };
-  
+
   const onCloseCalendar = () => {
     setModalVisible(false);
-  }
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -58,65 +58,67 @@ const DayPlanner = ({todo_list, addTodo, deleteTodo}) => {
             mode="outlined"
             placeholder="Add your task"
             value={task}
-            onChangeText={task => setTask (task)}
+            onChangeText={(task) => setTask(task)}
             style={styles.inputBox}
           />
           <TextInput
             mode="outlined"
             value={date}
             placeholder="Select Due Date"
-            onChangeText={date => setDate (date)}
+            onChangeText={(date) => setDate(date)}
             style={styles.inputBox}
             editable={false}
           />
 
           <View style={styles.buttonConiainer}>
-            <Button onPress={() => setModalVisible (true)}>CALENDAR</Button>
+            <Button onPress={() => setModalVisible(true)}>CALENDAR</Button>
           </View>
-          <DatePicker callback={getDate} visible={modalVisible} onClose ={onCloseCalendar} />
-
+          <DatePicker
+            callback={getDate}
+            visible={modalVisible}
+            onClose={onCloseCalendar}
+          />
         </View>
 
-        {modalVisible
-          ? null
-          : <FlatList
-              data={todo_list}
-              keyExtractor={item => item.id}
-              renderItem={({item, index}) => {
-                return (
-                  <Card style={styles.taskContainer}>
-                    <Card.Title
-                      title={item.task}
-                      right={props => (
-                        <TouchableOpacity
-                          onPress={() => handleDeleteTodo (item.id)}
-                        >
-                          <MaterialIcons
-                            name="remove-done"
-                            size={24}
-                            color="red"
-                          />
-                        </TouchableOpacity>
-                      )}
-                    />
-                    <Card.Content>
-                      <Paragraph>{'Due Date' + ':  ' + item.date}</Paragraph>
-                    </Card.Content>
-                  </Card>
-                );
-              }}
-            />}
+        {modalVisible ? null : (
+          <FlatList
+            data={todo_list}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => {
+              return (
+                <Card style={styles.taskContainer}>
+                  <Card.Title
+                    title={item.task}
+                    right={(props) => (
+                      <TouchableOpacity
+                        onPress={() => handleDeleteTodo(item.id)}
+                      >
+                        <MaterialIcons
+                          name="remove-done"
+                          size={24}
+                          color="red"
+                        />
+                      </TouchableOpacity>
+                    )}
+                  />
+                  <Card.Content>
+                    <Paragraph>{"Due Date" + ":  " + item.date}</Paragraph>
+                  </Card.Content>
+                </Card>
+              );
+            }}
+          />
+        )}
 
-        {modalVisible
-          ? null
-          : <Button
-              mode="contained"
-              onPress={handleAddTodo}
-              style={styles.addTask}
-            >
-              Add Task
-            </Button>}
-
+        {modalVisible ? null : (
+          <Button
+            mode="contained"
+            onPress={handleAddTodo}
+            style={styles.addTask}
+          >
+            Add Task
+          </Button>
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -128,6 +130,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = {addTodo, deleteTodo};
+const mapDispatchToProps = { addTodo, deleteTodo };
 
-export default connect (mapStateToProps, mapDispatchToProps) (DayPlanner);
+export default connect(mapStateToProps, mapDispatchToProps)(DayPlanner);
